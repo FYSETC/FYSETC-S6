@@ -1,4 +1,4 @@
-# FYSETC-F6
+# FYSETC-S6
 #### Feature :
 
 1. Based on STM32F446 180Mhz，all IOs can withstand 5V voltage
