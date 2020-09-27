@@ -131,7 +131,7 @@ In order to give you a better understanding of how to use jumpers for different 
 
 ### 2.12V/24V jumpers
 
-![1574476322618](images/1574476322618.png)
+![1574476322618](images/S6_1574476322618.png)
 
 
 
