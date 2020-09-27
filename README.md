@@ -33,6 +33,7 @@ The S6 is based on the STM32F446 32bit mcu, like the F6, has six drive sockets a
 - 3 ways PWM fans ，2 ways RGB led ，12V & 24V optional
 
 - Easy DISPLAY + SD-CARD connector:
+
   - RepRapDiscount SmartController compatible pin header on board
   - 10P FPC for Serial Touch display
   - 2X4 PinHeader Out for SD Card moudle 
@@ -43,6 +44,7 @@ The S6 is based on the STM32F446 32bit mcu, like the F6, has six drive sockets a
   
 
 ## Application
+
 ---
 
 - 3D printer 
@@ -84,7 +86,9 @@ The S6 is based on the STM32F446 32bit mcu, like the F6, has six drive sockets a
 
 
 ## Jumpers 
+
 ---
+
 **Just like the F6 V1.4, the two Z-motor sockets are changed from parallel to series. If you only use one of the sockets, the other must be connected with a jumper cap, otherwise a Z-axis motor will not work.**
 
 ![1574491030269](images/S6_1574491030269.png)
@@ -171,6 +175,7 @@ S6 **V2.0** version adds 5V selection jumper. You can choose 5V from USB or DC c
 In S6 V2.0, the BOOT0 button is replaced by a jumper.
 
 ![S6V2.0BOOT0](images/S6V2.0BOOT0.png)
+
 ## Pin Definition
 
 All the pins we have marked on the back of the board, if you need to, you can confirm the board in reverse or check the sch.
@@ -209,7 +214,27 @@ To compile the firmware , you need to install Visual Studio Code and the platfor
 
 #### Download firmware
 
+##### S6 v1.2
+
 You can download the firmware from https://github.com/FYSETC/Marlin-2.0.x-FYSETC/tree/S6/MASTER, and if you want to know what we have changed , we recommend to use git to get the code .
+
+If you want to have latest feature of Marlin , we recommend to use latest [Marlin bugfix-2.0.x branch](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x) , after downloading ,you need to enable following define in ```configuration.h``` file  
+
+```#define MOTHERBOARD BOARD_FYSETC_S6```
+
+then change the ```default_envs``` variant in ```platformio.ini``` file
+
+```default_envs = FYSETC_S6```
+
+##### S6 v2.0
+
+If you are using S6 v2.0 , you can get the firmware from latest [Marlin bugfix-2.0.x branch](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x) , then enable following define in ```configuration.h``` file  
+
+```#define MOTHERBOARD BOARD_FYSETC_S6_V2_0```
+
+then change the ```default_envs``` variant in ```platformio.ini``` file
+
+```default_envs = FYSETC_S6```
 
 #### Compile the firmware
 
@@ -263,7 +288,7 @@ Do as the red number shows in the screen shot.
 
 4. fill in the 'Start address' with 0x8010000
 
-6. Start Programming
+5. Start Programming
 
 **We will continue to update, please look forward to it!**
 
@@ -272,6 +297,7 @@ Do as the red number shows in the screen shot.
 ## Tech Support
 
 ---
+
 You can dowload file from our [github](https://github.com/FYSETC/FYSETC-S6)
 Please submit any technical issue into our [forum](http://forum.fysetc.com/) 
 
