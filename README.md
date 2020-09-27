@@ -254,9 +254,11 @@ If you generate the hex file fail you may need to open vscode using Administrato
 
 We provide several ways to upload the firmware .Uploading with SD card is our default way to update the firmware as the board already has the sdcard bootloader in it when it leave the factory. If you choose to upload the firmware with a sdcard. First you need to connect a sdcard module to the S6 EXP2 port. Basically , you can use any kind of LCD screen that contain sdcard module. But if you can't make it work , check if your sdcard module's SPI CS pin connected to PA4 pin in S6 board .
 
-Than,copy your compiled firmware file "firmware.bin" fire to the SD card , and insert it to the SD card module , and then power on the board.
+Then,copy your compiled firmware file "firmware.bin" file to the SD card , and insert it to the SD card module , and then power on the board. You may need to wait for about 30s to finish uploading. 
 
 #### Upload the firmware(DFU)
+
+The other way to upload the firmware is using DFU.
 
 ##### 1.Download stm32cubeprogrammer 
 
@@ -270,7 +272,15 @@ Open the STM32CubeProgrammer software.
 
 ##### 2.Enter DFU mode
 
+S6 v1.2
+
 First power off the board , then push the Boot0 button and hold it , then connect the USB to the board and your computer , it will enter DFU mode . Now you can loose you hand from Boot0 button.
+
+S6 v2.0
+
+First power off the board , then jumper the Boot0 to GND , then connect the USB to the board and your computer , it will enter DFU mode . Now you can loose you hand from Boot0 button. 
+
+***REMEMBER to remove the jumper if you finish uploading or it will enter DFU mode again.***
 
 ##### 3.Upload the firmware
 
