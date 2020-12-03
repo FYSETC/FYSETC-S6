@@ -2,8 +2,6 @@
 
 ## Bootloader
 
----
-
 #### Upload the bootloader(DFU)
 
 ##### Download stm32cubeprogrammer 
@@ -41,11 +39,5 @@ Do as the red number shows in the screen shot.
 
 
 ## Tech Support
-
----
-Please submit any technical issue into our [forum](http://forum.fysetc.com/) 
-
-
-```
-
-```
+You can raise issue in our github https://github.com/FYSETC/FYSETC-S6/issues
+Or submit any technical issue into our [forum](http://forum.fysetc.com/) 
