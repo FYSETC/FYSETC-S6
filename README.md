@@ -254,7 +254,9 @@ If you generate the hex file fail you may need to open vscode using Administrato
 
 We provide several ways to upload the firmware .Uploading with SD card is our default way to update the firmware as the board already has the sdcard bootloader in it when it leave the factory. If you choose to upload the firmware with a sdcard. First you need to connect a sdcard module to the S6 EXP2 port. Basically , you can use any kind of LCD screen that contain sdcard module. But if you can't make it work , check if your sdcard module's SPI CS pin connected to PA4 pin in S6 board .
 
-Then,copy your compiled firmware file "firmware.bin" file to the SD card , and insert it to the SD card module , and then power on the board. You may need to wait for about 30s to finish uploading. 
+Then,copy your compiled firmware file ```firmware.bin``` file to the SD card , and insert it to the SD card module , and then power on the board. You may need to wait for about 30s to finish uploading. 
+
+Note: The bootloader is in the folder named `bootloader`, you also can follow the `README` there. 
 
 #### Upload the firmware(DFU)
 
