@@ -256,7 +256,7 @@ We provide several ways to upload the firmware .Uploading with SD card is our de
 
 Then,copy your compiled firmware file ```firmware.bin``` file to the SD card , and insert it to the SD card module , and then power on the board. You may need to wait for about 30s to finish uploading. 
 
-Note: The bootloader is in the folder named `bootloader`, you also can follow the `README` there. 
+Note: The bootloader is in the folder named `bootloader`, please follow the README in [bootloader folder](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader).
 
 #### Upload the firmware(DFU)
 
@@ -303,10 +303,6 @@ Do as the red number shows in the screen shot.
 5. Start Programming
 
 **We will continue to update, please look forward to it!**
-
-### Bootloader
-
-Also you can update the firmware with sdcard, please follow the README in [bootloader folder](https://github.com/FYSETC/FYSETC-S6/tree/master/bootloader).
 
 ## Tech Support
 

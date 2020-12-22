@@ -16,7 +16,15 @@ Open the STM32CubeProgrammer software.
 
 ##### Enter DFU mode
 
+S6 v1.2
+
 First power off the board , then push the Boot0 button and hold it , then connect the USB to the board and your computer , it will enter DFU mode . Now you can loose you hand from Boot0 button.
+
+S6 v2.0
+
+First power off the board , then jumper the Boot0 to GND , then connect the USB to the board and your computer , it will enter DFU mode . Now you can loose you hand from Boot0 button. 
+
+***REMEMBER to remove the jumper if you finish uploading or it will enter DFU mode again.***
 
 ##### Upload the bootloader
 
