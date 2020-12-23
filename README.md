@@ -216,7 +216,7 @@ To compile the firmware , you need to install Visual Studio Code and the platfor
 
 ##### S6 v1.2
 
-You can download the firmware from https://github.com/FYSETC/Marlin-2.0.x-FYSETC/tree/S6/MASTER, and if you want to know what we have changed , we recommend to use git to get the code .
+The firmware is in the `firmware` folder in this repository, and if you want to know what we have changed , we recommend to use git to get the code .
 
 If you want to have latest feature of Marlin , we recommend to use latest [Marlin bugfix-2.0.x branch](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x) , after downloading ,you need to enable following define in ```configuration.h``` file  
 
@@ -228,7 +228,7 @@ then change the ```default_envs``` variant in ```platformio.ini``` file
 
 ##### S6 v2.0
 
-If you are using S6 v2.0 , you can get the firmware from latest [Marlin bugfix-2.0.x branch](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x) , then enable following define in ```configuration.h``` file  
+The firmware is in the `firmware` folder in this repository , you can also get the firmware from latest [Marlin bugfix-2.0.x branch](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x). You need to enable following define in ```configuration.h``` file  
 
 ```#define MOTHERBOARD BOARD_FYSETC_S6_V2_0```
 
