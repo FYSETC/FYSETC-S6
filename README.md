@@ -166,7 +166,9 @@ In order to give you a better understanding of how to use jumpers for different 
 
 ### 5. Jumper for 5V
 
-S6 **V2.0** version adds 5V selection jumper. You can choose 5V from USB or DC circuit.
+S6 **V2.0** version adds 5V selection jumper. You can choose 5V from USB or DC circuit. 
+
+Know issue: With 5V USB jumper selected, 24V applied, USB cable disconnected, the heater FETs will turn on.  So we recommend you to choose 5v from DC5V.
 
 ![S6跳线-5V](images/S6跳线-5V.png)
 
