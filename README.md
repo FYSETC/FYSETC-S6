@@ -95,7 +95,7 @@ The S6 is based on the STM32F446 32bit mcu, like the F6, has six drive sockets a
 
 
 
-### 1.for different drivers
+### 1.Stepper drivers
 
 In order to support as many different drivers as possible, S6 sets a lot of jumper positions. Different drive modules require different jumpers. As shown in the schematic diagram, there are 2 sets of jumpers in the drive section: JP1 and  JP6. 
 
@@ -117,8 +117,6 @@ In order to give you a better understanding of how to use jumpers for different 
 - When you connect the jumper cap, this pin is high. When you are not connected, it is the level state of the module itself. This is different from F6, which can be either high or low.
 - For details, please refer to the corresponding driver description.
 
-
-
 #### UART mode config
 
 ![1574477819491](images/S6_1574477819491.png)
@@ -126,6 +124,10 @@ In order to give you a better understanding of how to use jumpers for different 
 - For TMC2208/2225/2209. You just need one jumper to close the JP1, Then the UART mode will enabled.
 - You can config all the feature of  the TMC chip via UART, so you can leave all the other jumpers empty.
 - Even for 2209, We give 2 lines UART interface to every driver, so no need config the address by MS1/MS2.
+
+##### TMC2209 wiring
+
+![](images/TMC2209.JPG)
 
 #### SPI mode config
 
@@ -140,6 +142,7 @@ In order to give you a better understanding of how to use jumpers for different 
 
 
 - S6 have 12V onboard, Fan and RGB jumpers can refer to this picture and the silk screen at the bottom of the board.
+- The input power supply voltage should EXCEED 15v ,if not, the output voltage of 12V DCDC circuit will lower than 12v
 - Never let the 12V current exceed 5A, otherwise it will burn out the 12V DCDC circuit.
 - If you use an input above 18V, you will get a satisfactory 12V output, otherwise the output may be less than 12V.
 
@@ -202,9 +205,9 @@ The UART socket next to the limit switch can be used to connect serial devices s
 
 ![img](images/S6_1574489576766.png)
 
+### Reuse RGB ports for FAN
 
-
-
+![](images/RGB_FAN.png)
 
 ## Firmware
 
