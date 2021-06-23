@@ -303,7 +303,7 @@ Do as the red number shows in the screen shot.
 
 3. Choose the "firmware.bin" file.
 
-4. fill in the 'Start address' with 0x8010000
+4. fill in the 'Start address' with 0x8008000
 
 5. Start Programming
 

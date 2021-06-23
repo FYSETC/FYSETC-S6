@@ -38,7 +38,7 @@ Do as the red number shows in the screen shot.
 
 2. Connect the DFU 
 
-3. Choose the downloaded "Bootloader-FYSETC_S6.hex" file.
+3. Choose the downloaded "Bootloader-FYSETC_S6.hex" file. Make sure "Start address is 0x8000000"
 
 6. Start Programming
 
