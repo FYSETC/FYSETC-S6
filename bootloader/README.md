@@ -2,6 +2,8 @@
 
 ## Bootloader
 
+**First of all, you need know that, the FYSETC S6 bootloader boot address have been change to `0x8000` since 2021/06/23. So the default bootloader `Bootloader-FYSETC_S6.hex` boot address is `0x8000`. And the old bootloader boot address is `0x10000`, and the repo still contains it, its name is  `Bootloader-FYSETC_S6_10000`. So when you are going to update the bootloader, you should choose the right one.** 
+
 #### Upload the bootloader(DFU)
 
 ##### Download stm32cubeprogrammer 
@@ -38,13 +40,13 @@ Do as the red number shows in the screen shot.
 
 2. Connect the DFU 
 
-3. Choose the downloaded "Bootloader-FYSETC_S6.hex" file. Make sure "Start address is 0x8000000"
+3. Choose the downloaded "Bootloader-FYSETC_S6.hex" file (If old bootloader, see below, choose `Bootloader-FYSETC_S6_10000`). 
 
 6. Start Programming
 
 **We will continue to update, please look forward to it!***
 
-
+**You need know that, the FYSETC S6 bootloader boot address have been change to `0x8000` since 2021/06/23. So the default bootloader `Bootloader-FYSETC_S6.hex` boot address is `0x8000`. And the old bootloader boot address is `0x10000`, and the repo still contains it, its name is  `Bootloader-FYSETC_S6_10000`. So when you are going to update the bootloader, you should choose the right one.** 
 
 ## Tech Support
 You can raise issue in our github https://github.com/FYSETC/FYSETC-S6/issues

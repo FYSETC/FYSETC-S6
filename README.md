@@ -213,6 +213,8 @@ The UART socket next to the limit switch can be used to connect serial devices s
 
 ---
 
+### Marlin
+
 #### Download Vscode + platformio
 
 To compile the firmware , you need to install Visual Studio Code and the platformio pulg-in.
@@ -229,7 +231,11 @@ If you want to have latest feature of Marlin , we recommend to use latest [Marli
 
 then change the ```default_envs``` variant in ```platformio.ini``` file
 
-```default_envs = FYSETC_S6```
+```default_envs = FYSETC_S6``` (For old bootloader,boot address is 0x10000, see below)
+
+```default_envs = FYSETC_S6_8000``` (For new bootloader,boot address is 0x8000, see below)
+
+**Note: The bootloader boot address have been change to `0x8000` since 2021/06/23, you can check bootloader details [here](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader), and you can check the Marlin PR [here](https://github.com/MarlinFirmware/Marlin/pull/22207).**
 
 ##### S6 v2.0
 
@@ -239,9 +245,11 @@ The firmware is in the `firmware` folder in this repository , you can also get t
 
 then change the ```default_envs``` variant in ```platformio.ini``` file
 
-```default_envs = FYSETC_S6```
+```default_envs = FYSETC_S6``` (For old bootloader,boot address is 0x10000, see below)
 
-**Note: If you download the latest firmware [Marlin bugfix-2.0.x branch](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x), you may need to change the boot address yourself ,check the PR [here](https://github.com/MarlinFirmware/Marlin/pull/22207).**
+```default_envs = FYSETC_S6_8000``` (For new bootloader,boot address is 0x8000, see below)
+
+**Note: The bootloader boot address have been change to `0x8000` since 2021/06/23, you can check bootloader details [here](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader), and you can check the Marlin PR [here](https://github.com/MarlinFirmware/Marlin/pull/22207).**
 
 #### Compile the firmware
 
@@ -305,7 +313,7 @@ Do as the red number shows in the screen shot.
 
 3. Choose the "firmware.bin" file.
 
-4. fill in the 'Start address' with 0x8008000
+4. fill in the 'Start address' with `0x8008000` (If your platformio env is `default_envs = FYSETC_S6`, then you need to set it to `0x8010000`, in klipper if your boot address is `32k` then set it `0x8008000`, if 64k , set it `0x8010000`)
 
 5. Start Programming
 
