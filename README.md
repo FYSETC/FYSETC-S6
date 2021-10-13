@@ -4,9 +4,7 @@
 
 The S6 is based on the STM32F446 32bit mcu, like the F6, has six drive sockets and supports the full range of TMC drives. We have fully extended the resources of the MCU so that you can maximize its power. We considered the possible use scenarios of 3D printers and designed a series of extended applications, such as anti-reverse circuit, 12V power supply, thermocouple support, 24V sensor support and so on.
 
-
-
-## Features
+## 1. Features
 
 - Compact size: 117mm x 87mm，Same as F6
 
@@ -41,9 +39,8 @@ The S6 is based on the STM32F446 32bit mcu, like the F6, has six drive sockets a
 
 - SD card & USB upload support
 
-  
 
-## Application
+## 2. Application
 
 ---
 
@@ -53,9 +50,10 @@ The S6 is based on the STM32F446 32bit mcu, like the F6, has six drive sockets a
 
 - Other similar machines
 
-  
 
-## Hardware Reasources
+## 3. Hardware 
+
+### 3.1 Reasources
 
 ![1574476641063](images/S6_1574476641063.png)
 
@@ -83,9 +81,7 @@ The S6 is based on the STM32F446 32bit mcu, like the F6, has six drive sockets a
 | Input                | Main PWR：12-24V 15A Max；BED IN：12-24V 20A Max | Main PWR：12-24V 10A Max；BED IN：12-24V 15A Max |
 | Output               | BED OUT：20A Max ；Heater Out：5A Max            | BED OUT：15A Max ；Heater Out：5A Max            |
 
-
-
-## Jumpers 
+### 3.2 Jumpers 
 
 ---
 
@@ -95,7 +91,7 @@ The S6 is based on the STM32F446 32bit mcu, like the F6, has six drive sockets a
 
 
 
-### 1.Stepper drivers
+#### 3.2.1 Stepper drivers
 
 In order to support as many different drivers as possible, S6 sets a lot of jumper positions. Different drive modules require different jumpers. As shown in the schematic diagram, there are 2 sets of jumpers in the drive section: JP1 and  JP6. 
 
@@ -109,7 +105,7 @@ In order to give you a better understanding of how to use jumpers for different 
 
 
 
-#### A4988 jumper config
+##### A4988 jumper config
 
 ![1574477723736](images/S6_1574477723736.png)
 
@@ -117,7 +113,7 @@ In order to give you a better understanding of how to use jumpers for different 
 - When you connect the jumper cap, this pin is high. When you are not connected, it is the level state of the module itself. This is different from F6, which can be either high or low.
 - For details, please refer to the corresponding driver description.
 
-#### UART mode config
+##### UART mode config
 
 ![1574477819491](images/S6_1574477819491.png)
 
@@ -125,17 +121,17 @@ In order to give you a better understanding of how to use jumpers for different 
 - You can config all the feature of  the TMC chip via UART, so you can leave all the other jumpers empty.
 - Even for 2209, We give 2 lines UART interface to every driver, so no need config the address by MS1/MS2.
 
-##### TMC2209 wiring
+###### TMC2209 wiring
 
 ![](images/TMC2209.JPG)
 
-#### SPI mode config
+##### SPI mode config
 
 ![1574477946366](images/S6_1574477946366.png)
 
 - For TMC2130/5160/5161. You need 4 jumpers to close the JP6, Then the SPI mode will enabled.
 
-### 2.12V/24V jumpers
+#### 3.2.2 12V/24V jumpers
 
 ![1574476322618](images/S6_1574476322618.png)
 
@@ -146,14 +142,14 @@ In order to give you a better understanding of how to use jumpers for different 
 - Never let the 12V current exceed 5A, otherwise it will burn out the 12V DCDC circuit.
 - If you use an input above 18V, you will get a satisfactory 12V output, otherwise the output may be less than 12V.
 
-### 3.DIAG jumpers
+#### 3.2.3 DIAG jumpers
 
 ![1574476382401](images/S6_1574476382401.png)
 
 - If you use a TMC driver with sensor-less homing(2130/2209/5160/5161), you can connect these jumpers so that the MCU can get the DIAG signal through the corresponding end-stop pin to achieve sensor-less.
 - After connect the jumper, remember define the DIAG pins in the firmware and enable the feature.
 
-### 4.Bottom jumpers
+#### 3.2.4 Bottom jumpers
 
 ![1574476497110](images/S6_1574476497110.png)
 
@@ -167,7 +163,7 @@ In order to give you a better understanding of how to use jumpers for different 
 
 - For TE0-TE2, You can cut the jumper if you want use a thermocouple temperature measurement through AD597.
 
-### 5. Jumper for 5V
+#### 3.2.5 Jumper for 5V
 
 S6 **V2.0** version adds 5V selection jumper. You can choose 5V from USB or DC circuit. 
 
@@ -175,25 +171,25 @@ Know issue: With 5V USB jumper selected, 24V applied, USB cable disconnected, th
 
 ![S6跳线-5V](images/S6跳线-5V.png)
 
-### 6. Jumper for Boot0
+#### 3.2.6 Jumper for Boot0
 
 In S6 V2.0, the BOOT0 button is replaced by a jumper.
 
 ![S6V2.0BOOT0](images/S6V2.0BOOT0.png)
 
-## Pin Definition
+### 3.3 Pin Definition
 
 All the pins we have marked on the back of the board, if you need to, you can confirm the board in reverse or check the sch.
 
 Thanks to the power of the STM32, each pin has multiple functions, I will identify it for your reference as much as possible. For further information, please refer to the STM32F446 datasheet, which I have placed on our [S6 GitHub](https://github.com/FYSETC/FYSETC-S6/blob/master/datasheet/stm32f446ve.pdf)
 
-### EXP1&EXP2
+#### 3.3.1 EXP1&EXP2
 
 ![1574483263718](images/S6_1574483263718.png)
 
 
 
-### Eedstops and UART1 Pins
+#### 3.3.2 Eedstops and UART1 Pins
 
 The UART socket next to the limit switch can be used to connect serial devices such as the wifi module, or to update the firmware through the serial port.
 
@@ -201,19 +197,19 @@ The UART socket next to the limit switch can be used to connect serial devices s
 
 
 
-### BL-touch Wiring Example
+#### 3.3.3 BL-touch Wiring Example
 
 ![img](images/S6_1574489576766.png)
 
-### Reuse RGB ports for FAN
+#### 3.3.4 Reuse RGB ports for FAN
 
 ![](images/RGB_FAN.png)
 
-## Firmware
+## 4. Firmware
 
 ---
 
-### Marlin
+### 4.1 Marlin
 
 #### Download Vscode + platformio
 
@@ -231,9 +227,9 @@ If you want to have latest feature of Marlin , we recommend to use latest [Marli
 
 then change the ```default_envs``` variant in ```platformio.ini``` file
 
-```default_envs = FYSETC_S6``` (For old bootloader,boot address is 0x10000, see below)
+```default_envs = FYSETC_S6``` (For old bootloader,boot address is `0x10000`, see below)
 
-```default_envs = FYSETC_S6_8000``` (For new bootloader,boot address is 0x8000, see below)
+```default_envs = FYSETC_S6_8000``` (For new bootloader,boot address is `0x8000`, see below)
 
 **Note: The bootloader boot address have been change to `0x8000` since 2021/06/23, you can check bootloader details [here](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader), and you can check the Marlin PR [here](https://github.com/MarlinFirmware/Marlin/pull/22207).**
 
@@ -245,9 +241,9 @@ The firmware is in the `firmware` folder in this repository , you can also get t
 
 then change the ```default_envs``` variant in ```platformio.ini``` file
 
-```default_envs = FYSETC_S6``` (For old bootloader,boot address is 0x10000, see below)
+```default_envs = FYSETC_S6``` (For old bootloader,boot address is `0x10000`, see below)
 
-```default_envs = FYSETC_S6_8000``` (For new bootloader,boot address is 0x8000, see below)
+```default_envs = FYSETC_S6_8000``` (For new bootloader,boot address is `0x8000`, see below)
 
 **Note: The bootloader boot address have been change to `0x8000` since 2021/06/23, you can check bootloader details [here](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader), and you can check the Marlin PR [here](https://github.com/MarlinFirmware/Marlin/pull/22207).**
 
@@ -265,7 +261,9 @@ The check mark is for compiling , click it to compile.
 
 If you generate the hex file fail you may need to open vscode using Administrator Account .
 
-#### Upload the firmware(SDCARD)
+### 4.2 Upload firmware
+
+#### 4.2.1 Upload the firmware(SDCARD)
 
 We provide several ways to upload the firmware .Uploading with SD card is our default way to update the firmware as the board already has the sdcard bootloader in it when it leave the factory. If you choose to upload the firmware with a sdcard. First you need to connect a sdcard module to the S6 EXP2 port. Basically , you can use any kind of LCD screen that contain sdcard module. But if you can't make it work , check if your sdcard module's SPI CS pin connected to PA4 pin in S6 board .
 
@@ -273,11 +271,11 @@ Then,copy your compiled firmware file ```firmware.bin``` file to the SD card , a
 
 Note: The bootloader is in the folder named `bootloader`, please follow the README in [bootloader folder](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader).
 
-#### Upload the firmware(DFU)
+#### 4.2.2 Upload the firmware(DFU)
 
 The other way to upload the firmware is using DFU.
 
-##### 1.Download stm32cubeprogrammer 
+##### 1. Download stm32cubeprogrammer 
 
 You can download it from ST website.
 
@@ -287,7 +285,7 @@ Open the STM32CubeProgrammer software.
 
 ![1574332767079](images/S6_1574332767079.png)
 
-##### 2.Enter DFU mode
+##### 2. Enter DFU mode
 
 S6 v1.2
 
@@ -299,7 +297,7 @@ First power off the board , then jumper the Boot0 to 3.3V , then connect the USB
 
 ***REMEMBER to remove the jumper if you finish uploading or it will enter DFU mode again.***
 
-##### 3.Upload the firmware
+##### 3. Upload the firmware
 
 Now you can connect and flash the S6 board with stm32cubeprogrammer with the following operation.
 
@@ -319,8 +317,13 @@ Do as the red number shows in the screen shot.
 
 **We will continue to update, please look forward to it!**
 
-## Tech Support
+## 5. Tech Support
 
 You can submit issue in our github https://github.com/FYSETC/FYSETC-S6/issues
 Or submit any technical issue into our [forum](http://forum.fysetc.com/) 
 
+## 6. Related Articles
+
+[English](https://3dwork.io/en/fysetc-s6-complete-guide/)
+
+[Español](https://3dwork.io/fysetc-s6-guia-completa/)
