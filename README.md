@@ -7,37 +7,25 @@ The S6 is based on the STM32F446 32bit mcu, like the F6, has six drive sockets a
 ## 1. Features
 
 - Compact size: 117mm x 87mm，Same as F6
-
 - Based on STM32F446 180Mhz，all IOs can withstand 5V voltage
-
 - 6 TMC stepper drivers support, no need wire Uart/SPI
-
 - Improved TMC jumper settings ，simpler and easier to understand
-
 - Main power reverse protection circuit，safer
-
 - 28V input max，12V@5A，5V@2ADC-DC circuit，3.3V@0.6A LDO
-
 - Two car fuses for hot bed input and main power input
-
 - Limit switch socket 24V/5V/3.3V optional, ready for more other equipment, such as -inductive sensor, BL-Touch
-
 - XH connector and MX connector are optional
-
 - 10x PWM capable power mosfet outputs (1 for HotBed, 3 for Heat-End, 3 for fans, 3 for RGB LED strip) 
-
 - 3pin temperature header, you can use thermistor or thermocouple (requires AD597 module)
-
 - 3 ways PWM fans ，2 ways RGB led ，12V & 24V optional
-
 - Easy DISPLAY + SD-CARD connector:
 
   - RepRapDiscount SmartController compatible pin header on board
   - 10P FPC for Serial Touch display
   - 2X4 PinHeader Out for SD Card moudle 
   - EXP1 & EXP2 have more multiplexing functions, such as USART, I2C, CAN
-
 - SD card & USB upload support
+- S6 v2.1: **Add more protection** **(current** **limit resistor, VMOT fuse)**
 
 
 ## 2. Application
@@ -211,11 +199,11 @@ The UART socket next to the limit switch can be used to connect serial devices s
 
 ### 4.1 Marlin
 
-#### Download Vscode + platformio
+#### 4.1.1 Download Vscode + platformio
 
-To compile the firmware , you need to install Visual Studio Code and the platformio pulg-in.
+To compile the firmware , you need to install Visual Studio Code and the platformio pulg-in. More details of Marlin build, check [here](https://marlinfw.org/docs/basics/auto_build_marlin.html).
 
-#### Download firmware
+#### 4.1.2 Download firmware
 
 ##### S6 v1.2
 
@@ -233,7 +221,7 @@ then change the ```default_envs``` variant in ```platformio.ini``` file
 
 **Note: The bootloader boot address have been change to `0x8000` since 2021/06/23, you can check bootloader details [here](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader), and you can check the Marlin PR [here](https://github.com/MarlinFirmware/Marlin/pull/22207).**
 
-##### S6 v2.0
+##### S6 v2.x
 
 The firmware is in the `firmware` folder in this repository , you can also get the firmware from latest [Marlin bugfix-2.0.x branch](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x). You need to enable following define in ```configuration.h``` file  
 
@@ -265,7 +253,7 @@ If you generate the hex file fail you may need to open vscode using Administrato
 
 #### 4.2.1 Upload the firmware(SDCARD)
 
-We provide several ways to upload the firmware .Uploading with SD card is our default way to update the firmware as the board already has the sdcard bootloader in it when it leave the factory. If you choose to upload the firmware with a sdcard. First you need to connect a sdcard module to the S6 EXP2 port. Basically , you can use any kind of LCD screen that contain sdcard module. But if you can't make it work , check if your sdcard module's SPI CS pin connected to PA4 pin in S6 board .
+We provide several ways to upload the firmware .Uploading with SD card is our default way to update the firmware as the board already has the sdcard bootloader in it when it leave the factory. If you choose to upload the firmware with a sdcard. First you need to connect a sdcard module to the S6 EXP2 port. Basically , you can use any kind of LCD screen(like our [mini12864](https://github.com/FYSETC/FYSETC-Mini-12864-Panel)) that contain sdcard module. But if you can't make it work , check if your sdcard module's SPI CS pin connected to PA4 pin in S6 board .
 
 Then,copy your compiled firmware file ```firmware.bin``` file to the SD card , and insert it to the SD card module , and then power on the board. You may need to wait for about 30s to finish uploading. 
 
@@ -291,7 +279,7 @@ S6 v1.2
 
 First power off the board , then push the Boot0 button and hold it , then connect the USB to the board and your computer , it will enter DFU mode . Now you can loose you hand from Boot0 button.
 
-S6 v2.0
+S6 v2.x
 
 First power off the board , then jumper the Boot0 to 3.3V , then connect the USB to the board and your computer , it will enter DFU mode . Now you can loose you hand from Boot0 button. 
 
@@ -311,7 +299,7 @@ Do as the red number shows in the screen shot.
 
 3. Choose the "firmware.bin" file.
 
-4. fill in the 'Start address' with `0x8008000` (If your platformio env is `default_envs = FYSETC_S6`, then you need to set it to `0x8010000`, in klipper if your boot address is `32k` then set it `0x8008000`, if 64k , set it `0x8010000`)
+4. fill in the 'Start address' with `0x8008000` (If your platformio env is `default_envs = FYSETC_S6`, then you need to set it to `0x8010000`, in klipper if your boot address setting is `32k` then set it `0x8008000`, if 64k , set it `0x8010000`)
 
 5. Start Programming
 
