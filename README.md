@@ -249,9 +249,13 @@ The check mark is for compiling , click it to compile.
 
 If you generate the hex file fail you may need to open vscode using Administrator Account .
 
-### 4.2 Upload firmware
+### 4.2 Klipper
 
-#### 4.2.1 Upload the firmware(SDCARD)
+To be done...
+
+### 4.3 Upload firmware
+
+#### 4.3.1 Upload the firmware(SDCARD)
 
 We provide several ways to upload the firmware .Uploading with SD card is our default way to update the firmware as the board already has the sdcard bootloader in it when it leave the factory. If you choose to upload the firmware with a sdcard. First you need to connect a sdcard module to the S6 EXP2 port. Basically , you can use any kind of LCD screen(like our [mini12864](https://github.com/FYSETC/FYSETC-Mini-12864-Panel)) that contain sdcard module. But if you can't make it work , check if your sdcard module's SPI CS pin connected to PA4 pin in S6 board .
 
@@ -259,7 +263,7 @@ Then,copy your compiled firmware file ```firmware.bin``` file to the SD card , a
 
 Note: The bootloader is in the folder named `bootloader`, please follow the README in [bootloader folder](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader).
 
-#### 4.2.2 Upload the firmware(DFU)
+#### 4.3.2 Upload the firmware(DFU)
 
 The other way to upload the firmware is using DFU.
 
@@ -281,7 +285,7 @@ First power off the board , then push the Boot0 button and hold it , then connec
 
 S6 v2.x
 
-First power off the board , then jumper the Boot0 to 3.3V , then connect the USB to the board and your computer , it will enter DFU mode . Now you can loose you hand from Boot0 button. 
+First power off the board , then jumper the Boot0 to 3.3V , then connect the USB to the board and your computer , it will enter DFU mode . 
 
 ***REMEMBER to remove the jumper if you finish uploading or it will enter DFU mode again.***
 
