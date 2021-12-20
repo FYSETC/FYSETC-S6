@@ -24,7 +24,7 @@
 #if NOT_TARGET(STM32F4)
   #error "Oops! Select an STM32F4 board in 'Tools > Board.'"
 #elif HOTENDS > 3 || E_STEPPERS > 3
-  #error "RUMBA32 supports up to 3 hotends / E-steppers."
+  #error "FYSETC S6 supports up to 3 hotends / E-steppers."
 #endif
 
 #ifndef BOARD_INFO_NAME
@@ -130,7 +130,7 @@
     #define Y_SERIAL_TX_PIN                 PE14
   #endif
   #ifndef Y_SERIAL_RX_PIN
-    #define Y_SERIAL_RX_PIN                 PE13
+    #define Y_SERIAL_RX_PIN                 PC4
   #endif
   #ifndef Z_SERIAL_TX_PIN
     #define Z_SERIAL_TX_PIN                 PD11
