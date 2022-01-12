@@ -215,9 +215,9 @@ If you want to have latest feature of Marlin , we recommend to use latest [Marli
 
 then change the ```default_envs``` variant in ```platformio.ini``` file
 
-```default_envs = FYSETC_S6``` (For old bootloader,boot address is `0x10000`, see below)
+```default_envs = FYSETC_S6_8000``` (Recommended. boot address is `0x8000`. You need to flash the bootloader([github](https://github.com/FYSETC/FYSETC-S6/blob/main/bootloader/Bootloader-FYSETC_S6.hex) [gitee](https://gitee.com/fysetc-mirrors/FYSETC-S6/blob/main/bootloader/Bootloader-FYSETC_S6.hex)) first, check the `README` on the link)
 
-```default_envs = FYSETC_S6_8000``` (For new bootloader,boot address is `0x8000`, see below)
+```default_envs = FYSETC_S6``` (For old bootloader,boot address is `0x10000`, you need to flash this bootloader([github](https://github.com/FYSETC/FYSETC-S6/blob/main/bootloader/Bootloader-FYSETC_S6_10000.hex) [gitee](https://gitee.com/fysetc-mirrors/FYSETC-S6/blob/main/bootloader/Bootloader-FYSETC_S6_10000.hex)) first , check the `README` on the link)
 
 **Note: The bootloader boot address have been change to `0x8000` since 2021/06/23, you can check bootloader details [here](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader), and you can check the Marlin PR [here](https://github.com/MarlinFirmware/Marlin/pull/22207).**
 
@@ -229,9 +229,9 @@ The firmware is in the `firmware` folder in this repository , you can also get t
 
 then change the ```default_envs``` variant in ```platformio.ini``` file
 
-```default_envs = FYSETC_S6``` (For old bootloader,boot address is `0x10000`, see below)
+```default_envs = FYSETC_S6_8000``` (Recommended. boot address is `0x8000`. You need to flash the bootloader([github](https://github.com/FYSETC/FYSETC-S6/blob/main/bootloader/Bootloader-FYSETC_S6.hex) [gitee](https://gitee.com/fysetc-mirrors/FYSETC-S6/blob/main/bootloader/Bootloader-FYSETC_S6.hex)) first, check the `README` on the link)
 
-```default_envs = FYSETC_S6_8000``` (For new bootloader,boot address is `0x8000`, see below)
+```default_envs = FYSETC_S6``` (For old bootloader,boot address is `0x10000`, you need to flash this bootloader([github](https://github.com/FYSETC/FYSETC-S6/blob/main/bootloader/Bootloader-FYSETC_S6_10000.hex) [gitee](https://gitee.com/fysetc-mirrors/FYSETC-S6/blob/main/bootloader/Bootloader-FYSETC_S6_10000.hex)) first , check the `README` on the link)
 
 **Note: The bootloader boot address have been change to `0x8000` since 2021/06/23, you can check bootloader details [here](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader), and you can check the Marlin PR [here](https://github.com/MarlinFirmware/Marlin/pull/22207).**
 
@@ -251,23 +251,111 @@ If you generate the hex file fail you may need to open vscode using Administrato
 
 ### 4.2 Klipper
 
-To be done...
+You need to follow the Klipper [installation guide](https://www.klipper3d.org/Installation.html) to install [Klipper](https://github.com/KevinOConnor/klipper).
+
+When calling `make menuconfig`, please select below options
+
+#### 4.2.1 menuconfig
+
+- #### Enable `extra low-level configuration options`
+
+- #### Micro-controller Architecture
+
+Select `STMicroelectronics STM32`
+
+- #### Processor model
+
+Select `STM32F446`
+
+- #### Clock reference
+
+Select `12 MHz crystal`
+
+- #### Bootloader offset
+
+- ##### 1. Boot address no
+
+
+If you choose `No bootloader` bootloader offset in Klipper `make menuconfig`, then you use DFU([method1](#jump4) [method2](#jump)) to upload the firmware to S6 board. **But you need to set the 'Start address' to `0x08000000`**. 
+
+![image-20210705151440643](images\menuconfig1.png)
+
+- ##### 2. Boot address 32k
+
+
+If you choose `32k` bootloader offset in Klipper `make menuconfig`. Then you need to flash the S6 board bootloader named `Bootloader_FYSETC_S6` first (If you get your S6  after `2021/06/23`, no worries, the bootloader is on the board when it leave the factory). The bootloader is in the folder named `bootloader` in this repo, please follow the README in bootloader folder([github](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader) or [gitee](https://gitee.com/fysetc/FYSETC-S6/tree/main/bootloader)). Then you can follow [Upload the firmware(SDCARD)](#jump1) to flash your built Klipper firmware to S6. Or you can use DFU([method1](#jump4) [method2](#jump)) to upload your firmware, but **remember to change flash address to `0x08008000`** with these two methods. 
+
+![image-20210705151337765](images\menuconfig2.png)
+
+- ##### 3. Boot address 64k
+
+
+If you choose `64k` bootloader offset in Klipper `make menuconfig`. Then you need to flash the S6 board bootloader named `Bootloader_FYSETC_S6_10000` first. The bootloader is in the folder named `bootloader` in this repo, please follow the README in bootloader folder([github](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader) or [gitee](https://gitee.com/fysetc/FYSETC-S6/tree/main/bootloader)). Then you can follow [Upload the firmware(SDCARD)](#jump1) to flash your built Klipper firmware to S6. Or you can use DFU([method1](#jump4) [method2](#jump)) to upload your firmware, but **remember to change flash address to `0x08010000`** with these two methods. 
+
+![image-20210705151951142](images\menuconfig3.png)
+
+#### 4.2.2 Compile firmware
+
+```
+make
+```
+
+#### 4.2.3 Upload firmware
+
+Follow Firmware Update guide [here](#jump0).
 
 ### 4.3 Upload firmware
 
 #### 4.3.1 Upload the firmware(SDCARD)
 
-We provide several ways to upload the firmware .Uploading with SD card is our default way to update the firmware as the board already has the sdcard bootloader in it when it leave the factory. If you choose to upload the firmware with a sdcard. First you need to connect a sdcard module to the S6 EXP2 port. Basically , you can use any kind of LCD screen(like our [mini12864](https://github.com/FYSETC/FYSETC-Mini-12864-Panel)) that contain sdcard module. But if you can't make it work , check if your sdcard module's SPI CS pin connected to PA4 pin in S6 board .
+We provide several ways to upload the firmware .Uploading with SD card is our default way to update the firmware as the board already has the sdcard bootloader in it when it leave the factory. If you choose to upload the firmware with a sdcard. First you need to connect a sdcard module to the S6 EXP2 port. Basically , you can use any kind of LCD screen(like our [mini12864](https://github.com/FYSETC/FYSETC-Mini-12864-Panel)) that contain sdcard module. But if you can't make it work , check if your sdcard module's SPI CS pin connected to PA4 pin in S6 board.
 
 Then,copy your compiled firmware file ```firmware.bin``` file to the SD card , and insert it to the SD card module , and then power on the board. You may need to wait for about 30s to finish uploading. 
 
 Note: The bootloader is in the folder named `bootloader`, please follow the README in [bootloader folder](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader).
 
-#### 4.3.2 Upload the firmware(DFU)
+#### 4.3.2 <span id="jump4">Upload the firmware(dfu-util)</span>
 
-The other way to upload the firmware is using DFU.
+This method works in linux, that means should work in raspberry pi.
 
-##### 1. Download stm32cubeprogrammer 
+1. Enter DFU mode first
+
+   - First power off the board
+   - Set jumper on 5v pin and DC5V ![](images/5vJumper.png)
+   - Place jumper on BT0 to 3.3V pin ![](images/boot.png)
+   - Connect USB cable to the board and your computer 
+   - Power up the board with 24v 
+
+2. Make sure dfu-util is installed, shoot `dfu-util --version` command to check.
+
+   Sample output:
+
+   ```
+   dfu-util 0.9
+   
+   Copyright 2005-2009 Weston Schmidt, Harald Welte and OpenMoko Inc.
+   Copyright 2010-2016 Tormod Volden and Stefan Schmidt
+   This program is Free Software and has ABSOLUTELY NO WARRANTY
+   Please report bugs to http://sourceforge.net/p/dfu-util/tickets/
+   ```
+
+   If not , you should install it first, use the package manager of your distribution to get the latest version, like
+
+   ```
+   sudo apt-get install dfu-util
+   ```
+
+3. Then use the command below to upload the firmware. You should replace `firmware.bin` below with your built firmware bin file location like `out/klipper.bin` if you use klipper firmware. Change flash address `0x08008000` to bootloader you choosed. (If you use Marlin and your platformio env is `default_envs = FYSETC_S6`, then you need to set it to `0x08010000` and you need bootloader , if you use klipper firmware and you choose boot address `32kiB bootloader` when compiling klipper then set it `0x08008000`, if `64kiB bootloader` , set it `0x08010000`. if `no bootloader` set it to `0x08000000`)
+
+   ```
+   dfu-util -R -a 0 -s 0x08008000:leave -D firmware.bin
+   ```
+
+#### 4.3.3 <span id="jump">Upload the firmware(DFU)</span>
+
+The other way to upload the firmware is using DFU. 
+
+##### Step 1. Download stm32cubeprogrammer 
 
 You can download it from ST website.
 
@@ -277,7 +365,7 @@ Open the STM32CubeProgrammer software.
 
 ![1574332767079](images/S6_1574332767079.png)
 
-##### 2. Enter DFU mode
+##### Step 2. Enter DFU mode
 
 S6 v1.2
 
@@ -289,7 +377,7 @@ First power off the board , then jumper the Boot0 to 3.3V , then connect the USB
 
 ***REMEMBER to remove the jumper if you finish uploading or it will enter DFU mode again.***
 
-##### 3. Upload the firmware
+##### Step 3. Upload the firmware
 
 Now you can connect and flash the S6 board with stm32cubeprogrammer with the following operation.
 
@@ -303,7 +391,7 @@ Do as the red number shows in the screen shot.
 
 3. Choose the "firmware.bin" file.
 
-4. fill in the 'Start address' with `0x8008000` (If your platformio env is `default_envs = FYSETC_S6`, then you need to set it to `0x8010000`, in klipper if your boot address setting is `32k` then set it `0x8008000`, if 64k , set it `0x8010000`)
+4. fill in the 'Start address' with `0x8008000` (If you use Marlin firmware and your platformio env is `default_envs = FYSETC_S6`, then you need to set it to `0x08010000`, if env is `default_envs = FYSETC_S6_8000`, then you need to set it to `0x08008000` . If you use klipper firmware and you choose boot address `32kiB bootloader` when compiling klipper then set it `0x08008000`, if `64kiB bootloader` , set it `0x08010000`. if `no bootloader` set it to `0x08000000`)
 
 5. Start Programming
 
