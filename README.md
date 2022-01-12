@@ -283,7 +283,7 @@ If you choose `No bootloader` bootloader offset in Klipper `make menuconfig`, th
 - ##### 2. Boot address 32k
 
 
-If you choose `32k` bootloader offset in Klipper `make menuconfig`. Then you need to flash the S6 board bootloader named `Bootloader_FYSETC_S6` first (If you get your S6  after `2021/06/23`, no worries, the bootloader is on the board when it leave the factory). The bootloader is in the folder named `bootloader` in this repo, please follow the README in bootloader folder([github](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader) or [gitee](https://gitee.com/fysetc/FYSETC-S6/tree/main/bootloader)). Then you can follow [Upload the firmware(SDCARD)](#jump1) to flash your built Klipper firmware to S6. Or you can use DFU([method1](#jump4) [method2](#jump)) to upload your firmware, but **remember to change flash address to `0x08008000`** with these two methods. 
+If you choose `32k` bootloader offset in Klipper `make menuconfig`. Then you need to flash the S6 board bootloader named `Bootloader_FYSETC_S6` first (If you get your S6 board after `2021/06/23`, no worries, the bootloader is on the board when it leave the factory). The bootloader is in the folder named `bootloader` in this repo, please follow the README in bootloader folder([github](https://github.com/FYSETC/FYSETC-S6/tree/main/bootloader) or [gitee](https://gitee.com/fysetc/FYSETC-S6/tree/main/bootloader)). Then you can follow [Upload the firmware(SDCARD)](#jump1) to flash your built Klipper firmware to S6. Or you can use DFU([method1](#jump4) [method2](#jump)) to upload your firmware, but **remember to change flash address to `0x08008000`** with these two methods. 
 
 ![image-20210705151337765](images\menuconfig2.png)
 
